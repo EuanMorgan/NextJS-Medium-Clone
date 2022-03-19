@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    return res.status(200).json({ revalidated: true, req: req.query })
+    return res.status(200).json({ revalidated: true, req: req.body })
   } catch (err) {
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
