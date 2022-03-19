@@ -11,7 +11,9 @@ export default async function handler(req, res) {
   try {
     await res.unstable_revalidate(`/post/${slug.current}`)
 
-    return res.status(200).json({ revalidated: true })
+    return res
+      .status(200)
+      .json({ revalidated: true, path: `/post/${slug.current}` })
   } catch (err) {
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
