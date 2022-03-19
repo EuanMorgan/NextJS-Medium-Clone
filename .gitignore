@@ -36,4 +36,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-/morgan
+/morgan/node_modules
