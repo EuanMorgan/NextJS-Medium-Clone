@@ -3,13 +3,15 @@ export default async function handler(req, res) {
   if (req.query.secret !== process.env.REVALIDATE_SECRET) {
     return res.status(401).json({
       message: 'Invalid token',
-      token: process.env.REVALIDATE_SECRET,
-      you_sent: req.body,
     })
   }
 
+  const { slug } = req.body
+
   try {
-    return res.status(200).json({ revalidated: true, req: req.body })
+    await res.unstable_revalidate(`/${slug.current}`)
+
+    return res.status(200).json({ revalidated: true })
   } catch (err) {
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
