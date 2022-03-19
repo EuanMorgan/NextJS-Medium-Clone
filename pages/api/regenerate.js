@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const { slug } = req.body
 
   try {
-    await res.unstable_revalidate(`/${slug.current}`)
+    await res.unstable_revalidate(`/post/${slug.current}`)
 
     return res.status(200).json({ revalidated: true })
   } catch (err) {
